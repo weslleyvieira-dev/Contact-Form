@@ -233,7 +233,6 @@ form {
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
-  width: 30%;
   background-color: hsl(0, 0%, 100%);
   border-radius: 15px;
   padding: 1.5% 2% 2%;
