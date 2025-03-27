@@ -62,7 +62,7 @@ function validateForm() {
 function submitForm() {
   isSubmitted.value = true;
   if (validateForm()) {
-    clearForm()
+    clearForm();
     notification.value = "Message Sent!";
     setTimeout(() => {
       notification.value = "";
@@ -75,7 +75,7 @@ function submitForm() {
   }
 }
 
-function clearForm(){
+function clearForm() {
   Object.keys(formData).forEach((key) => (formData[key] = ""));
 }
 
@@ -95,8 +95,13 @@ watch(
 <template>
   <main>
     <div v-if="notification" class="notification">
-      <div v-if="notification === 'Message Sent!'"><h2><img src="./assets/images/icon-success-check.svg"/> {{ notification }}</h2>
-      <p>Thanks for completing the form. We'll be in touch soon!</p></div>
+      <div v-if="notification === 'Message Sent!'">
+        <h2>
+          <img src="./assets/images/icon-success-check.svg" />
+          {{ notification }}
+        </h2>
+        <p>Thanks for completing the form. We'll be in touch soon!</p>
+      </div>
       <div v-else>{{ notification }}</div>
     </div>
 
@@ -107,21 +112,27 @@ watch(
         <label class="name-container"
           >First Name *
           <input id="firstName" v-model="formData.firstName" type="text" />
-          <span v-if="isSubmitted && errors.firstName" class="error">{{ errors.firstName }}</span>
+          <span v-if="isSubmitted && errors.firstName" class="error">{{
+            errors.firstName
+          }}</span>
         </label>
 
         <label class="name-container"
           >Last Name *
           <input id="lastName" v-model="formData.lastName" type="text" />
-          <span v-if="isSubmitted && errors.lastName" class="error">{{ errors.lastName }}</span>
+          <span v-if="isSubmitted && errors.lastName" class="error">{{
+            errors.lastName
+          }}</span>
         </label>
       </div>
 
       <label for="email"
         >Email Address *
         <input id="email" v-model="formData.email" type="email" />
+        <span v-if="isSubmitted && errors.email" class="error">{{
+          errors.email
+        }}</span>
       </label>
-      <span v-if="isSubmitted && errors.email" class="error">{{ errors.email }}</span>
 
       <label for="queryType"
         >Query Type *
@@ -156,19 +167,25 @@ watch(
           </label>
         </div>
       </label>
-      <span v-if="isSubmitted && errors.queryType" class="error">{{ errors.queryType }}</span>
+      <span v-if="isSubmitted && errors.queryType" class="error">{{
+        errors.queryType
+      }}</span>
 
       <label for="message"
         >Message *
         <textarea id="message" v-model="formData.message"></textarea>
       </label>
-      <span v-if="isSubmitted && errors.message" class="error">{{ errors.message }}</span>
+      <span v-if="isSubmitted && errors.message" class="error">{{
+        errors.message
+      }}</span>
 
       <label class="checkbox">
         <input type="checkbox" v-model="formData.checkbox" />
         I consent to being contacted by the team *</label
       >
-      <span v-if="isSubmitted && errors.checkbox" class="error">{{ errors.checkbox }}</span>
+      <span v-if="isSubmitted && errors.checkbox" class="error">{{
+        errors.checkbox
+      }}</span>
 
       <input class="submit" type="submit" value="Submit" />
     </form>
@@ -267,9 +284,11 @@ form .radio-group {
   border-radius: 7px;
   padding: 7px 20px;
   width: 100%;
-  height: 32px;
   margin: 10px 0;
   transition: background-color 0.5s;
+  resize: none;
+  box-sizing: border-box;
+  height: 5vh;
 }
 
 .radio-container input.radio {
@@ -333,7 +352,7 @@ textarea {
 .error {
   color: hsl(0, 66%, 54%);
   font-size: 0.9rem;
-  margin: 0px 0 20px;
+  margin: 0 0 20px;
   display: block;
 }
 
@@ -349,8 +368,7 @@ textarea {
 .notification {
   position: absolute;
   z-index: 2;
-  top: 1.5vh;
-  right: 1vw;
+  top: 3vh;
   background-color: hsl(187, 24%, 22%);
   color: hsl(148, 38%, 91%);
   padding: 10px 20px;
@@ -372,5 +390,61 @@ textarea {
 
 .notification p {
   padding: 0 10px;
+}
+
+@media (max-width: 412px) and (max-height: 915px) {
+  main {
+    height: auto;
+    padding: 35px 0;
+  }
+
+  form {
+    width: 80%;
+    padding: 10px 23px;
+    gap: 10px;
+  }
+
+  form .name-group,
+  form .radio-group {
+    display: block;
+    margin: 5px 0;
+    width: 100%;
+  }
+
+  .name-container {
+    padding: 0 0 7px;
+  }
+
+  input {
+    margin: 7px 0;
+  }
+
+  .radio-container {
+    margin: 15px 0;
+  }
+
+  .radio-container input.radio {
+    width: 18px;
+    margin: 0 15px 0 0;
+  }
+
+  textarea {
+    height: 20vh;
+    margin: 10px 0 0;
+  }
+
+  .checkbox {
+    margin: 10px 0;
+  }
+
+  .error {
+    margin: 0 0 10px;
+  }
+
+  .notification {
+    position: fixed;
+    width: 80%;
+    padding: 2px 7px;
+  }
 }
 </style>
