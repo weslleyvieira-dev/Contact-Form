@@ -391,7 +391,7 @@ textarea {
   padding: 0 10px;
 }
 
-@media (max-width: 412px) and (max-height: 915px) {
+@media (max-width: 760px) {
   main {
     height: auto;
     padding: 35px 0;
